@@ -3,6 +3,11 @@
 #include "world.h"
 
 void create_world(int p, int q, world_func func, void *arg) {
+    //Different heights to generate different trees at
+    int low_level = 18;
+    int mid_level = 37;
+    int high_level;
+
     int pad = 1;
     for (int dx = -pad; dx < CHUNK_SIZE + pad; dx++) {
         for (int dz = -pad; dz < CHUNK_SIZE + pad; dz++) {
@@ -76,30 +81,35 @@ void create_world(int p, int q, world_func func, void *arg) {
                         func(x, h, z, w * flag, arg);
                     }
                 }
-                // trees
-                int ok = SHOW_TREES;
-                if (dx - 4 < 0 || dz - 4 < 0 ||
-                    dx + 4 >= CHUNK_SIZE || dz + 4 >= CHUNK_SIZE)
-                {
-                    ok = 0;
+
+                //Generate standard trees at mid_level
+                if (h >= low_level && h <= mid_level) {
+                  int ok = SHOW_TREES;
+                  //Lower tree_frequency for more trees
+                  float tree_frequency = 0.78;
+                  if (dx - 4 < 0 || dz - 4 < 0 ||
+                      dx + 4 >= CHUNK_SIZE || dz + 4 >= CHUNK_SIZE)
+                  {
+                      ok = 0;
+                  }
+                  if (ok && simplex2(x, z, 6, 0.5, 2) > tree_frequency) {
+                      for (int y = h + 3; y < h + 8; y++) {
+                          for (int ox = -3; ox <= 3; ox++) {
+                              for (int oz = -3; oz <= 3; oz++) {
+                                  int d = (ox * ox) + (oz * oz) +
+                                      (y - (h + 4)) * (y - (h + 4));
+                                  if (d < 11) {
+                                      func(x + ox, y, z + oz, 15, arg);
+                                  }
+                              }
+                          }
+                      }
+                      for (int y = h; y < h + 7; y++) {
+                          func(x, y, z, 5, arg);
+                      }
+                  }
                 }
-                if (ok && simplex2(x, z, 6, 0.5, 2) > 0.84) {
-                    for (int y = h + 3; y < h + 8; y++) {
-                        for (int ox = -3; ox <= 3; ox++) {
-                            for (int oz = -3; oz <= 3; oz++) {
-                                int d = (ox * ox) + (oz * oz) +
-                                    (y - (h + 4)) * (y - (h + 4));
-                                if (d < 11) {
-                                    func(x + ox, y, z + oz, 15, arg);
-                                }
-                            }
-                        }
-                    }
-                    for (int y = h; y < h + 7; y++) {
-                        func(x, y, z, 5, arg);
-                    }
-                }
-            }
+          }
              //clouds
             if (SHOW_CLOUDS) {
                 for (int y = 64; y < 72; y++) {
