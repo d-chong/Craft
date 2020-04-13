@@ -114,19 +114,34 @@ void create_world(int p, int q, world_func func, void *arg) {
                 if (h <= low_level + 2 && h >= low_level) {
                   int ok = SHOW_TREES;
                   //Lower tree_frequency for more trees
-                  float tree_frequency = 0.69;
+                  float tree_frequency = 0.69 + 0.01;
                   if (dx - 4 < 0 || dz - 4 < 0 ||
                       dx + 4 >= CHUNK_SIZE || dz + 4 >= CHUNK_SIZE)
                   {
                       ok = 0;
                   }
                   if (ok && simplex2(x, z, 6, 0.5, 2) > tree_frequency) {
-                      int ox = 2;
-                      int oz = 2;
                       //Generate the trunk
-                      for(int y = h; y < h + 8; y++) {
+                      func(x, h, z, 5, arg);
+                      func(x + 1, h, z, 5, arg);
+                      func(x, h, z - 1, 5, arg);
+                      for(int y = h + 1; y < h + 4; y++) {
                         func(x, y, z, 5, arg);
                       }
+                      func(x, h + 4, z + 1, 5, arg);
+                      for(int i = 5; i < 7; i++) {
+                        func(x + 1, h + i, z + 1, 5, arg);
+                      }
+                      for(int i = 7; i < 9; i++) {
+                        func(x + 1, h + i, z + 2, 5, arg);
+                      }
+
+                      //Generate the leaves
+                      //Coordinates for the top of the trunk
+                      int ox = x + 1;
+                      int oy = h + 8;
+                      int oz = z + 2;
+
                   }
 
                 }
