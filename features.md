@@ -25,7 +25,11 @@
   
 		 B) As a Craft player, I want to be able to see all available items i can select.
 	
-5. Dabble with movement to make a auto run feature that will make traversing the world easier
+5. Alter movement to make an auto run feature that will make traversing the world easier
 		 
 		 A) As a Craft player, I want to have a auto run feature to make testing easier.
+		 
+		 B) As a Craft player, I want to be able to toggle movement speed.
+		 
+		 C) As a Craft player, I want to have a key designated for descent during flight.
 
