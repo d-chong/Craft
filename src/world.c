@@ -132,7 +132,7 @@ void create_world(int p, int q, world_func func, void *arg) {
                       for(int i = 5; i < 7; i++) {
                         func(x + 1, h + i, z + 1, 5, arg);
                       }
-                      for(int i = 7; i < 9; i++) {
+                      for(int i = 7; i < 10; i++) {
                         func(x + 1, h + i, z + 2, 5, arg);
                       }
 
@@ -141,7 +141,29 @@ void create_world(int p, int q, world_func func, void *arg) {
                       int ox = x + 1;
                       int oy = h + 8;
                       int oz = z + 2;
-
+                      func(ox, oy + 1, oz, 15, arg);
+                      func(ox, oy, oz, 15, arg);
+                      func(ox + 1, oy, oz, 15, arg);
+                      func(ox - 1, oy, oz, 15, arg);
+                      func(ox, oy, oz + 1, 15, arg);
+                      func(ox, oy, oz - 1, 15, arg);
+                      func(ox + 1, oy, oz + 1, 15, arg);
+                      func(ox + 1, oy, oz - 1, 15, arg);
+                      func(ox - 1, oy, oz + 1, 15, arg);
+                      func(ox - 1, oy, oz - 1, 15, arg);
+                      func(ox + 2, oy--, oz + 1, 15, arg);
+                      func(ox - 2, oy, oz - 1, 15, arg);
+                      func(ox + 2, oy, oz - 1, 15, arg);
+                      func(ox, oy, oz - 2, 15, arg);
+                      func(ox + 2, oy, oz + 1, 15, arg);
+                      func(ox - 2, oy, oz - 2, 15, arg);
+                      func(ox, oy, oz + 2, 15, arg);
+                      func(ox, oy - 1, oz + 3, 15, arg);
+                      func(ox - 2, oy, oz + 1, 15, arg);
+                      func(ox - 2, oy - 1, oz + 1, 15, arg);
+                      func(ox - 3, oy - 1, oz - 1, 15, arg);
+                      func(ox + 3, oy - 1, oz - 1, 15, arg);
+                      func(ox, oy - 1, oz - 3, 15, arg);
                   }
 
                 }
