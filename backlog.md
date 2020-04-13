@@ -43,9 +43,15 @@ Status: Assigned Gavin Sprint 4  8pts PO Priority 1: Task 006 Demostrate crated 
   
   Status: COMPLETE Daniel Sprint 3 3pts PO Priority 1: Task 002 Remove one or more blocks at ground level
 ## USER Story B
-  Status: COPMLETE Daniel Sprint 3 3pts P0 Priority 1: Task 003 Remove a group of blocks to generate a pool
+  Status: COMPLETE Daniel Sprint 3 3pts P0 Priority 1: Task 003 Remove a group of blocks to generate a pool
   
   # Task 5
 ## User Story A
- Status: Assigned Daniel Sprint 3 8 pts P0 Priority 1: Task 001 Increase player movement speed
+ Status: COMPLETE Daniel Sprint 3 3 pts P0 Priority 1: Task 001 Increase player movement speed
+ 
+## User Story B
+ Status: COMPLETE Daniel Sprint 3 3 pts P0 Priority 1: Task 002 Toggle speed with designated key
+
+## User Story C
+ Status: COMPLETE Daniel Sprint 3 3 pts P0 Priority 1: Task 003 Descend during flight with left-shift key binding
   
