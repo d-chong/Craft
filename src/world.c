@@ -212,27 +212,32 @@ void create_world(int p, int q, world_func func, void *arg) {
                       }
 
                       //Generate leaves
+                      int block = 15;
                       int y = h + 1;
                       int i = 0;
                       while(i < 4) {
                         for(int i = -1; i < 1; i++) {
                           for(int j = -1; j < 1; j++) {
-                            func(x + i, y, z + j, 15, arg);
-                            func(x - i, y, z + j, 15, arg);
-                            func(x - i, y, z - j, 15, arg);
-                            func(x - i, y, z + j, 15, arg);
+                            func(x + i, y, z + j, block, arg);
+                            func(x - i, y, z + j, block, arg);
+                            func(x - i, y, z - j, block, arg);
+                            func(x - i, y, z + j, block, arg);
                           }
                         }
-                        func(x - 1, y, z + 1, 15, arg);
+                        func(x - 1, y, z + 1, block, arg);
                         y++;
-                        func(x - 1, y, z, 15, arg);
-                        func(x + 1, y, z, 15, arg);
-                        func(x, y, z - 1, 15, arg);
-                        func(x, y, z + 1, 15, arg);
+                        if (y >= 58 && i == 3) {
+                          block = 61;
+                        }
+                        func(x - 1, y, z, block, arg);
+                        func(x + 1, y, z, block, arg);
+                        func(x, y, z - 1, block, arg);
+                        func(x, y, z + 1, block, arg);
                         y++;
                         i++;
                       }
-                      func(x, y++, z, 15, arg);
+                      func(x, y++, z, block, arg);
+                      block = 15;
                   }
                 }
 
