@@ -112,6 +112,8 @@ void create_world(int p, int q, world_func func, void *arg) {
 
                 //Generate palm trees at low_level
                 if (h <= low_level + 2 && h >= low_level) {
+                  //Add a random number for variety in palm tree appearances
+                  int r_num = 1;
                   int ok = SHOW_TREES;
                   //Lower tree_frequency for more trees
                   float tree_frequency = 0.69 + 0.01;
@@ -123,24 +125,49 @@ void create_world(int p, int q, world_func func, void *arg) {
                   if (ok && simplex2(x, z, 6, 0.5, 2) > tree_frequency) {
                       //Generate the trunk
                       func(x, h, z, 5, arg);
-                      func(x + 1, h, z, 5, arg);
-                      func(x, h, z - 1, 5, arg);
+                      if ((rand() % 10) + 1 <= 5) {
+                        r_num = -1;
+                      }
+                      func(x + r_num, h, z, 5, arg);
+
+                      r_num = 1;
+                      if ((rand() % 10) + 1 <= 5) {
+                        r_num = -1;
+                      }
+                      func(x, h, z + r_num, 5, arg);
+
                       for(int y = h + 1; y < h + 4; y++) {
                         func(x, y, z, 5, arg);
                       }
-                      func(x, h + 4, z + 1, 5, arg);
+
+                      r_num = 1;
+                      if ((rand() % 10) + 1 <= 5) {
+                        r_num = -1;
+                      }
+
+                      r_num = 1;
+                      if ((rand() % 10) + 1 <= 5) {
+                        r_num = -1;
+                      }
+                      func(x, h + 4, z += r_num, 5, arg);
+                      x += 1;
                       for(int i = 5; i < 7; i++) {
-                        func(x + 1, h + i, z + 1, 5, arg);
+                        func(x, h + i, z, 5, arg);
+                      }
+
+                      r_num = 1;
+                      if ((rand() % 10) + 1 <= 5) {
+                        r_num = -1;
                       }
                       for(int i = 7; i < 10; i++) {
-                        func(x + 1, h + i, z + 2, 5, arg);
+                        func(x, h + i, z + r_num, 5, arg);
                       }
 
                       //Generate the leaves
-                      //Coordinates for the top of the trunk
-                      int ox = x + 1;
+                      //ox, oy, oz represent coordinates for the top of the trunk
+                      int ox = x;
                       int oy = h + 8;
-                      int oz = z + 2;
+                      int oz = z + r_num;
                       func(ox, oy + 1, oz, 15, arg);
                       func(ox, oy, oz, 15, arg);
                       func(ox + 1, oy, oz, 15, arg);
@@ -164,6 +191,7 @@ void create_world(int p, int q, world_func func, void *arg) {
                       func(ox - 3, oy - 1, oz - 1, 15, arg);
                       func(ox + 3, oy - 1, oz - 1, 15, arg);
                       func(ox, oy - 1, oz - 3, 15, arg);
+                      func(ox + 2, oy - 1, oz + 2, 15, arg);
                   }
 
                 }
