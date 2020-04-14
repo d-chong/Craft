@@ -6,7 +6,7 @@ void create_world(int p, int q, world_func func, void *arg) {
     //Different heights to generate different trees at
     int low_level = 12;
     int mid_level = 37;
-    int high_level;
+    int high_level = 56;
 
     int pad = 1;
     for (int dx = -pad; dx < CHUNK_SIZE + pad; dx++) {
@@ -195,6 +195,24 @@ void create_world(int p, int q, world_func func, void *arg) {
                   }
 
                 }
+
+                //Generate pine at high_level
+                if (h >= mid_level && h <= high_level + 7) {
+                  int ok = SHOW_TREES;
+                  //Lower tree_frequency for more trees
+                  float tree_frequency = 0.64;
+                  if (dx - 4 < 0 || dz - 4 < 0 ||
+                      dx + 4 >= CHUNK_SIZE || dz + 4 >= CHUNK_SIZE)
+                  {
+                      ok = 0;
+                  }
+                  if (ok && simplex2(x, z, 6, 0.5, 2) > tree_frequency) {
+                      for (int y = h; y < h + 7; y++) {
+                          func(x, y, z, 5, arg);
+                      }
+                  }
+                }
+
           }
              //clouds
             if (SHOW_CLOUDS) {
