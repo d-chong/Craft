@@ -198,6 +198,10 @@ void create_world(int p, int q, world_func func, void *arg) {
 
                 //Generate conifers at high_level
                 if (h >= mid_level && h <= high_level + 7) {
+                  int tree_type = 0;
+                  if ((rand() % 10) + 1 <= 5) {
+                    tree_type = 1;
+                  }
                   int ok = SHOW_TREES;
                   //Lower tree_frequency for more trees
                   float tree_frequency = 0.62;
@@ -207,6 +211,7 @@ void create_world(int p, int q, world_func func, void *arg) {
                       ok = 0;
                   }
                   if (ok && simplex2(x, z, 6, 0.5, 2) > tree_frequency) {
+                    if(tree_type) {
                       for (int y = h; y < h + 9; y++) {
                           func(x, y, z, 5, arg);
                       }
@@ -238,6 +243,51 @@ void create_world(int p, int q, world_func func, void *arg) {
                       }
                       func(x, y++, z, block, arg);
                       block = 15;
+                    } else {
+                      //Generate tree with wider base
+                      for (int y = h; y < h + 8; y++) {
+                          func(x, y, z, 5, arg);
+                      }
+                      int block = 15;
+                      //Base leaf layer
+                      for(int i = -2; i < 3; i++) {
+                        for(int j = -2; j < 3; j++) {
+                          if(abs(i) + abs(j) != 4){
+                            func(x + i, h + 1, z + j, block, arg);
+                          }
+                        }
+                      }
+
+                      //Second leaf layer
+                      for(int i = -1; i < 2; i++) {
+                        for(int j = -1; j < 2; j++) {
+                          func(x + i, h + 3, z + j, block, arg);
+                        }
+                      }
+
+                      //Third leaf layer
+                      for(int i = -1; i < 2; i++) {
+                        for(int j = -1; j < 2; j++) {
+                          if(abs(i) + abs(j) != 2){
+                            func(x + i, h + 5, z + j, block, arg);
+                          }
+                        }
+                      }
+
+                      //Top leaf layer
+                      if (h + 7 >= 58) {
+                        block = 61;
+                      }
+                      for(int i = -1; i < 2; i++) {
+                        for(int j = -1; j < 2; j++) {
+                          if(abs(i) + abs(j) != 2){
+                            func(x + i, h + 7, z + j, block, arg);
+                          }
+                        }
+                      }
+                      func(x, h + 8, z, block, arg);
+
+                    }
                   }
                 }
 
