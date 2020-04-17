@@ -32,4 +32,9 @@
 		 B) As a Craft player, I want to be able to toggle movement speed.
 		 
 		 C) As a Craft player, I want to have a key designated for descent during flight.
+		 
+6. Add more generated structures to Craft
+		 
+		 A) As a Craft player, I want to see more tree variety 
+		 
 
