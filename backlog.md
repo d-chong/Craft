@@ -47,11 +47,18 @@ Status: Assigned Gavin Sprint 4  8pts PO Priority 1: Task 006 Demostrate crated 
   
   # Task 5
 ## User Story A
- Status: COMPLETE Daniel Sprint 3 3 pts P0 Priority 1: Task 001 Increase player movement speed
+ Status: COMPLETE Daniel Sprint 4 3 pts P0 Priority 1: Task 001 Increase player movement speed
  
 ## User Story B
- Status: COMPLETE Daniel Sprint 3 3 pts P0 Priority 1: Task 002 Toggle speed with designated key
+ Status: COMPLETE Daniel Sprint 4 3 pts P0 Priority 1: Task 002 Toggle speed with designated key
 
 ## User Story C
- Status: COMPLETE Daniel Sprint 3 3 pts P0 Priority 1: Task 003 Descend during flight with left-shift key binding
+ Status: COMPLETE Daniel Sprint 4 3 pts P0 Priority 1: Task 003 Descend during flight with left-shift key binding
+ 
+  # Task 6
+## User Story A
+ Status: COMPLETE Daniel Sprint 4 3 pts P0 Priority 1: Task 001 Generate palm trees
+ 
+ Status: COMPLETE Daniel Sprint 4 3 pts P0 Priority 1: Task 002 Generate pine trees
+ 
   
